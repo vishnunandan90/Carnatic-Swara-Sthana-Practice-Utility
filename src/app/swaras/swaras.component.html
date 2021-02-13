@@ -1,0 +1,73 @@
+<div id="select-swaras" class="container">
+  <p style="color: white;">choose a sa:</p>
+  <select class="custom-select" (change)="changeSA($event)">
+    <option *ngFor="let note of notes">
+      {{ note }}
+    </option>
+  </select>
+  <div class="swara-buttons">
+    <div
+      (click)="addSwara($event)"
+      *ngFor="let swara of swaras"
+      class="swara-btn"
+    >
+      {{ swara }}
+    </div>
+  </div>
+  <div class="swara-buttons">
+    <div *ngFor="let note of notes" class="note-btn">
+      {{ note }}
+    </div>
+  </div>
+</div>
+
+<div id="chosen-swaras" class="container">
+  <div id="pattern-number-section">
+    <div style="color: white; display: block;">
+      Number of Notes per pattern: {{ notesPerPattern }}
+    </div>
+
+    <button
+      style="margin-left: 10px;"
+      class="btn btn-primary"
+      (click)="increaseNotesPerPattern()"
+    >
+      +
+    </button>
+    <button
+      style="margin-left: 10px;"
+      class="btn btn-primary"
+      (click)="removeNote()"
+    >
+      -
+    </button>
+  </div>
+
+  <div class="chosen-swara-buttons">
+    <div *ngFor="let swara of chosenSwaras" class="col-lg-1 chosen-swara">
+      {{ swara }}
+    </div>
+  </div>
+</div>
+
+<div id="player-section" class="container">
+  <button class="btn btn-primary player-btn" (click)="playAudio()">
+    play
+  </button>
+  <button class="btn btn-primary player-btn" (click)="updatePattern()">
+    Next
+  </button>
+  <button class="btn btn-primary player-btn" (click)="showSwaras()">
+    Show Swaras
+  </button>
+</div>
+
+
+<div  [hidden]="hideAnswer" id="answer" class="container">  
+  <div class="chosen-swara-buttons">
+    <div *ngFor="let index of pattern" class="col-lg-1 chosen-swara">
+      {{ chosenSwaras[index] }}
+    </div>
+  </div>
+</div>
+
